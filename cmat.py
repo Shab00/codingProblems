@@ -1,17 +1,20 @@
 from typing import List
-import itertools
 
 def solve(n:int, bill_levels: List[int], bob_levels: List[int]) -> str:
-    print("The level is %d" % n)
-    
-    print("bill can do these levels:", " ".join(map(str, bill_levels)))
+    w = "I become the hero!"
+    l = "Oh, no! The castle is locked!"
 
-    print("bob can do these levels:", " ".join(map(str, bob_levels)))
+    levels = bill_levels + bob_levels
+    for i in levels:
+        if i != n:
+            return w
+    return l
 
 n = 5
 
 bill_levels = [3, 1, 2, 3]
 
-bob_levels = [2, 2, 4]
+bob_levels = [2, 2, 4, 5]
 
-solve(n, bill_levels, bob_levels)
+message = solve(n, bill_levels, bob_levels)
+print(message)
