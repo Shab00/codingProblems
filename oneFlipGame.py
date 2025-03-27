@@ -1,11 +1,17 @@
 from typing import List
-
 def solve(l:List[int])->int:
-    return len(l) - 1
+    dic = {}
+    for i in l:
+        if i not in dic:
+            dic[i] = 1
+        else:
+            dic[i] += 1
+    mdic = max(dic.values())
+    return mdic
 
 
 
-l = [1, 0, 0, 0, 1, 0, 0, 0]
+l = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
 result = solve(l)
 
