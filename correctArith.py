@@ -1,6 +1,14 @@
 def solve(a:int, b:int, c:int)->str:
-    pass
 
+    plus = a + b
+    minus = a - b
+
+    if plus == c:
+        return "+"
+    elif minus == c:
+        return "-"
+
+    
 
 a, b, c = 1, 2, 3
 
