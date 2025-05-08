@@ -1,22 +1,21 @@
 from typing import List
 
 def solve(boys:List[int], girls:List[int]) -> int:
+    boys.sort()
+    girls.sort()
     print(f"boys:{repr(boys)}, girls:{repr(girls)}")
     count = 0
-    while boys:
-        for i in girls:
-            partners = abs(boys[0] - i)
-            if partners == 1:
-                count += 1
-        boys.pop(0)
-
+    i = boys[0]
+    j = girls[0]
+    while i < j:
+        
     return count
 
 
 
 
 
-boys, girls = [1, 4, 6, 2], [5, 1, 5, 7, 9]
+boys, girls = [4,5,4,4], [5,3,4,2,4]
 
 result = solve(boys, girls)
 
