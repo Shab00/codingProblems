@@ -1,7 +1,13 @@
 from typing import List
 
 def solve(prices:List[int], coins:List[int])->List[int]:
-    pass
+
+    prices.sort()
+    coins.sort()
+
+    p, c = 0, 0
+
+    
 
 prices, coins = [3, 10, 8, 6, 11], [1, 10, 3, 11]
 
