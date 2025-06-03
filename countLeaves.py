@@ -11,7 +11,21 @@ root.right.left = TreeNode(15)
 root.right.right = TreeNode(7)
 
 def count_leaves(root: TreeNode) -> int:
-    pass
+    if not root:
+        return 0
+
+    stack = [(root)] 
+    leafNode = 0
+    while stack:
+        node = stack.pop()
+        if node.left == None and node.right == None:
+            leafNode += 1
+        else:
+            stack.append(node.left)
+            stack.append(node.right)
+
+    return leafNode
+
 
 result = count_leaves(root)
 print(result) 
