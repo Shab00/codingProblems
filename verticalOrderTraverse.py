@@ -19,13 +19,20 @@ def solve(root: TreeNode) -> list:
     if not root:
         return []
     queue = deque([(root, 0)])
-    result = []
     columns = {}
     while queue:
-        
         node, col = queue.popleft()
-        queue([(root.left, -1), (root.right, 1)])
-
+        if col not in columns:
+            columns[col] = []
+        columns[col].append(node.val)
+        if node.left:
+            queue.append((node.left, col - 1))
+        if node.right:
+            queue.append((node.right, col + 1))
+    result = []
+    for c in sorted(columns):
+        result.append(columns[c])
+    return result
 
 result = solve(root)
 print(result)
