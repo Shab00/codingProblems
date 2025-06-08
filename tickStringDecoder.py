@@ -1,12 +1,27 @@
 def solve(code: str) -> str:
     
-    cheat = {".": "0", "-.": "1", "--": "2"}
-    
+    tick_dict = {".": "0", "-.": "1", "--": "2"}
+    decoded = [] 
+    i = 0
+    while i < len(code):
 
-    
-    return "-----"
+        if i < len(code) - 1 and code[i] == ".":
+            decoded.append(tick_dict[code[i]])
+            i += 1
+        elif i < len(code) - 1 and code[i] == "-" and code[i + 1] == ".":
+            decoded.append(tick_dict[code[i] + code[i + 1]])
+            i += 2
+        elif i < len(code) - 1 and code[i] == "-" and code[i + 1] == "-":
+            decoded.append(tick_dict[code[i] + code[i + 1]])
+            i += 2
+        else:
+            i += 1
 
-inputs = ".-.--"
+    return ''.join(decoded)
 
-result = solve(inputs)
-print(result)
+inputs = [".-.--", ".-.--.--.", "-.--.--."]
+
+for i in inputs:
+
+    result = solve(i)
+    print(result)
