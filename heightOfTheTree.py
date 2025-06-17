@@ -15,7 +15,27 @@ root.right.right.left = TreeNode("G")
 root.left.left = TreeNode("D")
 
 def solve(root: TreeNode) -> int:
-    pass
+    if not root:
+        return []
+    height = 0
+    queue = deque([root])
+    result = []
+    while queue:
+        level_size = len(queue)
+        level = []
+        for _ in range(level_size):
+            node = queue.popleft()
+            level.append(node.val)
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        result.append(level)
+        height += 1
+    return height
+
+        
+        
 
 result = solve(root)
 
