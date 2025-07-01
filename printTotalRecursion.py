@@ -5,6 +5,11 @@ def sum_digits(num: int) -> int:
 
     return int(strNum[0]) + sum_digits(int(strNum[1::]))
 
-print(sum_digits(1234) )
-print(sum_digits(5) )
-print(sum_digits(0))
+def math(num: int) -> int:
+    if num < 10:
+        return num
+    return num % 10 + math(num // 10)
+
+print(math(1234) )
+print(math(5) )
+print(math(0))
