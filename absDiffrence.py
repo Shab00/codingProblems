@@ -9,13 +9,25 @@ def solve(a: list[int]) -> int:
         return abs(a[1] - a[0])
     firstHalf = a[:l//2]
     secondHalf = a[l//2:]
+    if l % 2 == 0:
+        firstAv = sum(firstHalf) // len(firstHalf)
+        secondAv = sum(secondHalf) // len(secondHalf)
+        num = abs(secondAv - firstAv)
+        return num
+    else:
+        numer = abs(sum(secondHalf) * len(firstHalf) - sum(firstHalf) * len(secondHalf))
+        dem = len(firstHalf) * len(secondHalf)
+        return (numer * pow(dem, MOD-2, MOD)) % MOD
 
-    firstAv = sum(firstHalf) / len(firstHalf)
-    secondAv = sum(secondHalf) / len(secondHalf)
+#result = ( numerator × modinv(denominator, MOD) ) 
 
-    num = abs(secondAv - firstAv)
+#    Numerator: (\text{sum2} \times \text{count1} - \text{sum1} \times \text{count2})
+ #   Denominator: (\text{count1} \times \text{count2})
 
-    return num
+#Step 2: Always use absolute value (if required)
+
+#If the problem wants the absolute difference:
+#numerator = | sum2 × count1 − sum1 × count2 | 
 
 inputs = [[1, 2, 10, 11], 
           [1, 2, 3], 
