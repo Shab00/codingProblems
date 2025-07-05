@@ -20,6 +20,6 @@ def pathSum(root: TreeNode, target: int):
 
 target = [22, 26, 18]
 
-for i in target:
-    result = pathSum(root, i)
+for x in target:
+    result = pathSum(root, x)
     print(result)
