@@ -1,9 +1,16 @@
 def solve(n: int) -> list[list]:
-    moves = (2 ** n) - 1
+    def move(num: int, sou: int, dest: int, aux: int, ml: list):
 
-    return moves
+        if num == 1:
+            ml.append([sou, dest])
+            return
 
-inputs = [3, 8]
+
+    ml = []
+    move(n, 0, 2, 1, ml)
+    return ml
+
+inputs = [1, 2, 3]
 for i in inputs:
     result = solve(i)
     print(result)
