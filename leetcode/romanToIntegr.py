@@ -4,17 +4,13 @@ def romanToInt(s: str) -> int:
                  "L": 50, "C": 100, "D": 500,
                  "M": 1000}
     count = 0
-    l, r = 0, 1 
     for i in range(len(s) - 1):
+        print("look %i" % romanDict[s[i]])
         if romanDict[s[i]] < romanDict[s[i + 1]]:
-            print(s[i], print(s[i]))
-            l += 1
-            r += 1
-            count += romanDict[s[l]]
+            print(s[i])
+            count += romanDict[s[i]]
         else:
-            count += romanDict[s[l]]
-            l += 1
-            r += 1
+            count += romanDict[s[i]]
 
     return count
 
