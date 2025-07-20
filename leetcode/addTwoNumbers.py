@@ -13,15 +13,15 @@ l2.next.next = ListNode(4)
 
 def addTwoNumbers(l1: ListNode, l2: ListNode) -> ListNode:
 
-    stack = []
-    stack.append(l1)
+    current1, current2 = l1, l2
     result = []
-    while stack:
-        node = stack.pop()
-        result.append(node)
-        if node.next:
-            stack.append(node.val)
-
+    temp1, temp2 = [], []
+    while current1 and current2:
+        temp1.append(str(current1.val))
+        temp2.append(str(current2.val))
+        current1 = current1.next
+        current2 = current2.next
+    print(temp1, temp2)
     return result
 
 result = addTwoNumbers(l1, l2)
