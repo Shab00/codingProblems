@@ -16,19 +16,25 @@ def addTwoNumbers(l1: ListNode, l2: ListNode) -> ListNode:
     current1, current2 = l1, l2
     temp1, temp2 = [], []
     while current1 and current2:
-        temp1.append(str(current1.val))
-        temp2.append(str(current2.val))
+        temp1.insert(0, str(current1.val))
+        temp2.insert(0, str(current2.val))
         current1 = current1.next
         current2 = current2.next
-    temp1.reverse()
-    temp2.reverse()
     num1 = ''.join(temp1)
     num2 = ''.join(temp2)
     total = int(num1) + int(num2)
     strTotal = str(total)
-    l3 = list(strTotal)
-    l3.reverse()
-    return l3
+    
+    list3 = list(strTotal)
+    list3.reverse()
+    ansHead = ListNode(int(list3[0]))
+    ansCur = ansHead
+
+    for num in list3[1:]:
+        ansCur.next = ListNode(int(num))
+        ansCur = ansCur.next
+
+    return ansHead
 
 result = addTwoNumbers(l1, l2)
 print(result)
