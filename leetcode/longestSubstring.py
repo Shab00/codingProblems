@@ -1,5 +1,14 @@
 def lengthOfSubstring(s: str) -> int:
-    pass
+
+    setList = set(s)
+    hashMap = dict.fromkeys(setList, 0)
+    l, r = 0, 1
+    while r < len(s):
+                    
+        l += 1
+        r += 1
+
+    return len(s)
 
 inputs = [("abcabcbb", 3), 
           ("bbbbb", 1), 
