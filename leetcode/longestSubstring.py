@@ -1,20 +1,17 @@
 def lengthOfSubstring(s: str) -> int:
 
-    setList = set(s)
-    hashMap = dict.fromkeys(setList, 0)
     l, r = 0, 0
-    result = []
+    length = set()
+    maxL = 0
     while r < len(s):
-      if hashMap[s[r]] > 1:
-           hashMap[s[r]] = 0
-           result.remove(s[r])
-           l += 1
-      if s[r] in hashMap:
-           hashMap[s[r]] += 1
-           result.append(s[r])
-           r += 1
-      print(result)
-    return len(s)
+        if s[r] not in length:
+            length.add(s[r])
+            r += 1
+        else:
+            length.remove(s[l])
+            l += 1
+        maxL = max(maxL, len(length))
+    return maxL
 
 inputs = [("abcabcbb", 3), 
           ("bbbbb", 1), 
