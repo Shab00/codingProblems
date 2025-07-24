@@ -1,5 +1,6 @@
 def longestPalString(s: str) -> str:
-
+    if not s:
+        return ""
     mid = len(s) // 2
     if len(s) % 2 == 0:
         l, r = mid, mid - 1
