@@ -5,18 +5,41 @@ def myAtoi(s: str) -> int:
     result = 0
     sign = 1
     p = 0
-    while p < len(s):
-        if s[p] == " ":
-            p += 1
+    while p < len(s) and s[p] == " ":
+        p += 1
+
+    if p < len(s):
         if s[p] == "-":
             sign = -1
+            p += 1
         elif s[p] == "+":
             sign = 1
-        if s[p].isdigit():
-            digit = ord(s[p]) - ord('0')
-            result = result * 10 + digit
+            p += 1
+
+    while p < len(s) and s[p].isdigit():
+        digit = ord(s[p]) - ord('0')
+        if result > (Int_Max - digit) // 10:
+            return Int_Max if sign == 1 else Int_Min
+        result = result * 10 + digit
         p += 1
-    return result * sign
+
+    return sign * result
+#     while p < len(s):
+        # if s[p] == " ":
+            # p += 1
+        # if s[p] == "-":
+            # sign = -1
+            # p += 1
+        # elif s[p] == "+":
+            # sign = 1
+            # p += 1
+        # if s[p].isdigit():
+            # digit = ord(s[p]) - ord('0')
+            # result = result * 10 + digit
+        # elif s[p].isdigit():
+            # break
+        # p += 1
+    # return result * sign
 #     for char in s:
         # if not char.isdigit():
             # break
