@@ -4,13 +4,26 @@ def myAtoi(s: str) -> int:
     Int_Min = - 2**31
     result = 0
     sign = 1
-    for char in s:
-        if not char.isdigit():
-            break
-        elif char.isdigit():
-            digit = ord(char) - ord('0')
+    p = 0
+    while p < len(s):
+        if s[p] == " ":
+            p += 1
+        if s[p] == "-":
+            sign = -1
+        elif s[p] == "+":
+            sign = 1
+        if s[p].isdigit():
+            digit = ord(s[p]) - ord('0')
             result = result * 10 + digit
+        p += 1
     return result * sign
+#     for char in s:
+        # if not char.isdigit():
+            # break
+        # elif char.isdigit():
+            # digit = ord(char) - ord('0')
+            # result = result * 10 + digit
+    # return result * sign
 
 inputs = [("42", 42), (" -042", -42), 
           ("1337c0d3", 1337),
