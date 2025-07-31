@@ -1,7 +1,25 @@
 def isPal(x: int) -> bool:
-    pass
+    strNum = str(x)
+    mid = len(strNum) // 2
+    result = []
+    if len(strNum) % 2 == 0:
+        l, r = mid, mid - 1
+    else:
+        l, r = mid, mid
 
-inputs = [(121, True), (-121, False), (10, False)]
+    while l >= 0 and r <= len(strNum):
+        if strNum[l] != strNum[r]:
+            return False
+        elif strNum[l] == strNum[r]:
+            result.append(strNum[l])
+        l -= 1
+        r += 1
+    print(result)
+    if result:
+        return True
+
+inputs = [(121, True), (-121, False), (10, False), 
+          (123321, True), (-10, False)]
 
 for nums, b in inputs:
     result = isPal(nums)
