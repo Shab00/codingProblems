@@ -1,6 +1,16 @@
 def maxArea(height: list[int]) -> int:
-    pass
-
+    l, r = 0, len(height) - 1
+    maxResult = 0
+    while l <= r:
+        if height[l] <= height[r]:
+            curResult = min(height[l], height[r]) * (r - l) 
+            maxResult = max(maxResult, curResult)
+            l += 1
+        elif height[l] >= height[r]:
+            curResult = min(height[l], height[r]) * (r - l) 
+            maxResult = max(maxResult, curResult)
+            r -= 1
+    return maxResult
 
 # def brute(height: list[int]) -> int:
 
