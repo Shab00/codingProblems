@@ -1,14 +1,14 @@
 def threeSum(nums: list[int], target: int) -> int:
     nums.sort()
-    print(nums)
     result = 0
     for index in range(len(nums)):
         l, r = index + 1, len(nums) - 1
         while l < r:
-            print(nums[index], nums[l], nums[r])
             tNum = nums[index] + nums[l] + nums[r]
-            dif = tNum - target
-            print(dif)
+            if tNum < 0:
+                tNum = tNum * -1
+            dif = abs(tNum - target)
+            print(tNum, dif)
             if tNum == target:
                 return tNum
             else:
