@@ -1,5 +1,8 @@
 def letterCombo(digits: str) -> list[str]:
 
+    if not digits:
+        return []
+
     keypad = {'2': ['a', 'b', 'c'],
               '3': ['d', 'e', 'f'],
               '4': ['g', 'h', 'i'],
@@ -9,8 +12,22 @@ def letterCombo(digits: str) -> list[str]:
               '8': ['t', 'u', 'v'],
               '9': ['w', 'x', 'y', 'z']}
 
+    sol = []
+    ret = []
+    n = len(digits)
 
+    def backtrack(i, path):
+        if i == n:
+            ret.append("".join(sol))
+            return
 
+        for letter in keypad[digits[i]]:
+            sol.append(letter)
+            backtrack(i+1, path)
+            sol.pop()
+    backtrack(0, [])
+    return ret
+            
 
 
 
