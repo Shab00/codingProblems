@@ -7,20 +7,19 @@ def comboSum(can: list[int], target: int) -> list[list[int]]:
     ret = []
     n = len(can)
 
-    def backtrack(i=0):
-        if i == n:
-            total = sum(sol[:])
-            if total == target:
-
-                ret.append(sol[:])
+    def backtrack(i=0, curSum=0):
+        if curSum == target:
+            ret.append(sol[:])
             return
 
-        backtrack(i+1)
+        elif curSum > target or i == n:
+            return 
 
         sol.append(can[i])
-        backtrack(i+1)
+        backtrack(i, curSum + can[i])
         sol.pop()
-    backtrack()
+        backtrack(i+1, curSum)
+    backtrack(0, 0)
     return ret
 
 
