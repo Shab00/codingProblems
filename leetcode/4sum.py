@@ -11,7 +11,9 @@ def my_sum(nums:list[int], target: int) -> list[list[int]]:
                     result.append([nums[first], nums[second], nums[l], nums[r]])
                 if cur < target:
                     l += 1
-                r -= 1
+                else:
+                    r -= 1
+
     return result
 
 inputs = [([1,0,-1,0,-2,2], 0, [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]),
