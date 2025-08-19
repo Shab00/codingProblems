@@ -2,13 +2,23 @@ def my_sum(nums:list[int], target: int) -> list[list[int]]:
     result = []
     nums.sort()
     for first in range(len(nums)):
+        if first > 0 and nums[first] == nums[first - 1]:
+            continue
         for second in range(first + 1, len(nums)):
+            if second > first + 1 and nums[second] == nums[second - 1]:
+                continue
             l, r = second + 1, len(nums) - 1
 
             while l < r:
                 cur =  nums[first] + nums[second] + nums[l] + nums[r]
                 if cur == target:
                     result.append([nums[first], nums[second], nums[l], nums[r]])
+                    while l < r and nums[l] == nums[l + 1]:
+                        l += 1
+                    while l < r and nums[r] == nums[r - 1]:
+                        r -= 1
+                    l += 1
+                    r -= 1
                 if cur < target:
                     l += 1
                 else:
