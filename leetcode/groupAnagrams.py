@@ -1,5 +1,16 @@
-def group(strs: str) -> list[list[str]]:
-    pass
+def group(strs: list[str]) -> list[list[str]]:
+    result = []
+    hMap = {}
+    for word in strs:
+        sorteds = ''.join(sorted(word))
+        if sorteds not in hMap:
+            hMap[sorteds] = [] 
+        hMap[sorteds].append(word)
+
+    for keys in hMap:
+        result.append(hMap[keys])
+
+    return result
 
 inputs = [(["eat","tea","tan","ate","nat","bat"],
            [["bat"],["nat","tan"],["ate","eat","tea"]]),
