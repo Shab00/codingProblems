@@ -1,7 +1,7 @@
 def isValid(board: list[list[str]]) -> bool:
-    for rows in range(len(board)):
-        for col in board[rows]:
-            print(rows, col)
+    for rows in range(len(board[0])):
+        for col in range(len(board)):
+            print(board[col][rows])
 
 inputs = [
         ([["5","3",".",".","7",".",".",".","."]
