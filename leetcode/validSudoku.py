@@ -20,6 +20,17 @@ def isValid(board: list[list[str]]) -> bool:
         if len(c) != len(cols):
             return False
 
+    for rows in range(0, 9, 3):
+        for cols in range(0, 9, 3):
+            txt = set()
+            x = []
+            for offr in range(3):
+                for offc in range(3):
+                    if board[rows + offr][cols + offc] != '.':
+                        txt.add(board[rows + offr][cols + offc])
+                        x.append(board[rows + offr][cols + offc])
+            if len(x) != len(txt):
+                return False
     return True
 
 inputs = [
