@@ -1,16 +1,27 @@
 def isValid(board: list[list[str]]) -> bool:
-    row = []
-    cols = []
 
     for rows in board:
+        row = set()
+        r = []
         for i in rows:
-            row.append(i)
-    print(row)
+            if i != '.':
+                row.add(i)
+                r.append(i)
+        if len(r) != len(row):
+            return False
 
     for rows in range(len(board[0])):
+        cols = set()
+        c = []
         for col in range(len(board)):
-            cols.append(board[col][rows])
-    print(cols)       
+            if board[col][rows] != '.':
+                cols.add(board[col][rows])
+                c.append(board[col][rows])
+        if len(c) != len(cols):
+            return False
+
+    return True
+
 inputs = [
         ([["5","3",".",".","7",".",".",".","."]
           ,["6",".",".","1","9","5",".",".","."]
