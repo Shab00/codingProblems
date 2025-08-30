@@ -1,7 +1,16 @@
 def longest(nums: list[int]) -> int:
-    nums = list(set(nums))
-    print(nums)
+    nums = set(nums)
+    result = 0
+    for i in nums:
+        if i - 1 not in nums:
+            curNum = i
+            cur = 1
+            while curNum + 1 in nums:
+                curNum += 1
+                cur += 1
+            result = max(result, cur)
 
+    return result
 
 
 inputs = [
