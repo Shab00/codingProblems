@@ -1,4 +1,4 @@
-def eval(tokens: list[str]) -> int:
+def evalP(tokens: list[str]) -> int:
     pass
 
 inputs = [(["2","1","+","3","*"], 9), 
@@ -6,7 +6,7 @@ inputs = [(["2","1","+","3","*"], 9),
           (["10","6","9","3","+","-11","*","/","*","17","+","5","+"], 22)]
 
 for i, e in inputs:
-    result = eval(i)
+    result = evalP(i)
     print(
             f"inputs:\n{i}\n"
             f"outputs:\n{result}\n"
