@@ -24,7 +24,7 @@ for i, e in inputs:
     result = generate(i)
     print(
             f"inputs:\n{i}\n"
-            f"outputs:\n{result}\n"
+            f"backtracking function outputs:\n{result}\n"
             f"expected:\n{e}\n"
             f"{'-'*50}"
             )
