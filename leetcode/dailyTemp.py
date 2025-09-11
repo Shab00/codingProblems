@@ -20,10 +20,14 @@ def brute(temp: list[int]) -> list[int]:
 def dailyTemp(temp: list[int]) -> list[int]:
 
     stack = []
+    result = [0] * len(temp)
     for i in range(len(temp)):
-        stack.append(i+1)
-        
-    return stack
+        while stack and temp[i] > temp[stack[-1]]:
+            a = stack.pop()
+            result[a] = i - a
+        stack.append(i)
+    return result
+
 
 
 inputs = [([73,74,75,71,69,72,76,73], [1,1,4,2,1,1,0,0]),
