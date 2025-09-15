@@ -1,5 +1,20 @@
 def carFleet(target: int, position: list[int], speed: list[int]) -> int:
-     pass
+    result = []
+    count = 0
+    fleetTime = 0
+    for i, j in zip(position, speed):
+        t = (target - i) / j
+        result.append((i, t))
+    result.sort(reverse = True)
+
+    while result:
+        a, b = result.pop(0)
+        if b > fleetTime:
+            count += 1
+            fleetTime = b
+        elif b <= fleetTime:
+            continue
+    return count
 
 inputs = [(12, [10,8,0,5,3], [2,4,1,1,3], 3),
            (10, [3], [3], 1),
