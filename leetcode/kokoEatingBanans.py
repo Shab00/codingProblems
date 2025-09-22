@@ -1,5 +1,16 @@
 def eatingSpeed(piles: list[int], h: int) -> int:
-    pass
+    minSpeed = 1
+    maxSpeed = max(piles)
+    while minSpeed <= maxSpeed:
+        m = (maxSpeed + minSpeed) // 2
+        count = 0
+        for i in piles:
+            count += (i + m - 1) // m 
+        if count > h:
+            minSpeed = m + 1
+        elif count <= h:
+            maxSpeed = m - 1
+    return minSpeed
 
 inputs = [([3,6,7,11], 8, 4),
           ([30,11,23,4,20], 5, 30),
