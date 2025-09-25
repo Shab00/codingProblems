@@ -7,10 +7,16 @@ def search(nums: list[int], target: int) -> int:
         print(nums[l], nums[m], nums[r])
         if nums[m] == target:
             return m
-        if nums[l] < nums[m]:
-            r = m - 1
+        if nums[l] <= nums[m]:
+            if nums[l] <= target < nums[m]:
+                r = m - 1
+            else:
+                l = m + 1
         else:
-            l = m + 1
+            if nums[m] < target <= nums[r]:
+                l = m + 1
+            else:
+                r = m - 1
     return -1
 
 
