@@ -1,0 +1,88 @@
+# Time-Based Key-Value Store (Binary Search Version)
+
+Design a **time-based key-value data structure** that can store multiple values for the same key at different timestamps, and retrieve the key's value as of a specific timestamp.
+
+**Implement a `TimeMap` class with the following operations:**
+
+- `TimeMap()`: Initializes the data structure.
+- `void set(String key, String value, int timestamp)`: Stores the key `key` with the value `value` at the given `timestamp`.
+- `String get(String key, int timestamp)`: Retrieves the value for `key` with the largest timestamp `<= timestamp`.  
+  - If there are multiple such values, return the one with the largest timestamp.
+  - If no suitable value exists, return the empty string `""`.
+
+### Example Usage
+
+**Input:**
+```
+["TimeMap", "set", "get", "get", "set", "get", "get"]
+[[], ["foo", "bar", 1], ["foo", 1], ["foo", 3], ["foo", "bar2", 4], ["foo", 4], ["foo", 5]]
+```
+
+**Output:**
+```
+[null, null, "bar", "bar", null, "bar2", "bar2"]
+```
+
+**Explanation:**
+- `TimeMap timeMap = new TimeMap();`
+- `timeMap.set("foo", "bar", 1);` → Stores "foo" = "bar" at timestamp 1.
+- `timeMap.get("foo", 1);` → Returns "bar".
+- `timeMap.get("foo", 3);` → Returns "bar" (latest value before or at timestamp 3 is at timestamp 1).
+- `timeMap.set("foo", "bar2", 4);` → Stores "foo" = "bar2" at timestamp 4.
+- `timeMap.get("foo", 4);` → Returns "bar2".
+- `timeMap.get("foo", 5);` → Returns "bar2" (latest value before or at timestamp 5 is at timestamp 4).
+
+---
+
+**Note:**  
+- The key challenge is efficiently retrieving the correct value for a given timestamp, likely using **binary search** over stored timestamps per key.
+- Store each key's values and timestamps so you can quickly look up the correct value.
+
+---
+
+# Best Time to Buy and Sell Stock
+
+**Problem Statement:**
+
+Given an integer array `prices` where `prices[i]` is the price of NeetCoin on the ith day,  
+choose a single day to buy one NeetCoin and a different day in the future to sell it.  
+Return the maximum profit you can achieve. If no transaction yields profit, return `0`.
+
+**Examples:**
+
+- Input: `prices = [10,1,5,6,7,1]`  
+  Output: `6`  
+  Explanation: Buy on day 1 (`1`), sell on day 4 (`7`): `7 - 1 = 6`.
+
+- Input: `prices = [10,8,7,5,2]`  
+  Output: `0`  
+  Explanation: No profitable transaction is possible.
+
+**Constraints:**
+- `1 <= prices.length <= 100`
+- `0 <= prices[i] <= 100`
+
+---
+
+# Longest Substring Without Repeating Characters
+
+**Problem Statement:**
+
+Given a string `s`, find the length of the longest substring without repeating characters.  
+A substring is a contiguous sequence of characters within a string.
+
+**Examples:**
+
+- Input: `s = "zxyzxyz"`  
+  Output: `3`  
+  Explanation: The longest substring without duplicates is `"xyz"`.
+
+- Input: `s = "xxxx"`  
+  Output: `1`  
+  Explanation: The longest substring without duplicates is `"x"`.
+
+**Constraints:**
+- `0 <= s.length <= 1000`
+- `s` may consist of printable ASCII characters.
+
+---
