@@ -4,15 +4,13 @@ def search(nums: list[int], target: int) -> int:
 
     while l <= r:
         m = (l + r) // 2
-        difl = abs(target - nums[l])
-        difr = abs(target - nums[r])
         print(nums[l], nums[m], nums[r])
         if nums[m] == target:
             return m
-        elif difl > difr:
-            l = m + 1
-        else:
+        if nums[l] < nums[m]:
             r = m - 1
+        else:
+            l = m + 1
     return -1
 
 
