@@ -1,19 +1,25 @@
 def charRep(s: str, k: int) -> int:
+    count = {}
+    max_count = 0
+    left = 0
+    result = 0
 
-    l, r = 0, 1
-    chars = 0
-    while r < len(s):
-        hMap = {}
-        for i in range(len(s[l:r + 1])):
-            if s[i] not in hMap:
-                hMap[s[i]] = 1
-            else:
-                hMap[s[i]] += 1
-        print(s[l], s[r])
-        print(hMap)
+    for right in range(len(s)):
+        char = s[right]
+        if char not in count:
+            count[char] = 0
+        count[char] += 1
 
-        l += 1
-        r += 1
+        max_count = max(max_count, count[char])
+
+        while (right - left + 1) - max_count > k:
+            left_char = s[left]
+            count[left_char] -= 1
+            left += 1
+
+        result = max(result, right - left + 1)
+
+    return result
 
 inputs = [("ABAB", 2, 4),
           ("AABABBA", 1, 4)]
