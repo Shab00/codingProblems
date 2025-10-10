@@ -1,5 +1,15 @@
 def minWindow(s: str, t: str) -> str:
-    pass
+
+    key = {}
+    for i in t:
+        if i not in key:
+            key[i] = 0
+        key[i] += 1
+
+    array = {}
+    l = 0
+    for r in range(len(s)):
+        
 
 inputs = [("OUZODYXAZV", "XYZ", "YXAZ"),
           ("xyz", "xyz", "xyz"),
