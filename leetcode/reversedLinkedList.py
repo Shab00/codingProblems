@@ -4,7 +4,15 @@ class ListNode:
         self.next = next
 
 def reverseList(head: ListNode) -> ListNode:
-    pass
+
+    prev = None
+    curr = head
+    while curr:
+        next_tmp = curr.next
+        curr.next = prev
+        prev = curr
+        curr = next_tmp
+    return prev
 
 def list_to_linkedlist(lst):
     if not lst:
@@ -31,6 +39,6 @@ test_cases = [
 
 for case in test_cases:
     head = list_to_linkedlist(case)
-    reversed_head = reverseList(head) 
+    reversed_head = reverseList(head)  
     output = linkedlist_to_list(reversed_head)
     print(f"Input: {case} -> Output: {output}")
