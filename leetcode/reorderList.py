@@ -60,9 +60,3 @@ test_cases = [
     [1,2,3,4],
     [1,2,3,4,5]
 ]
-
-for case in test_cases:
-    head = list_to_linkedlist(case)
-    reorderList(head)  # The function modifies the list in-place
-    output = linkedlist_to_list(head)
-    print(f"Input: {case} -> Output: {output}")
