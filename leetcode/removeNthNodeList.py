@@ -4,9 +4,11 @@ class ListNode:
         self.next = next
 
 def removeNthFromEnd(head: ListNode, n: int) -> ListNode:
-    pass
-
-
+    prev = None
+    curr = head 
+    while curr:
+        print(f"curr: {curr.val}, prev: {prev.val if prev else None}, next: {curr.next.val if curr.next else None}")
+        curr = curr.next
 def list_to_linkedlist(lst):
     if not lst:
         return None
