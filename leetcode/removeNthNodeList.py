@@ -6,9 +6,15 @@ class ListNode:
 def removeNthFromEnd(head: ListNode, n: int) -> ListNode:
     prev = None
     curr = head 
+    count = 0
+    temp = []
     while curr:
-        print(f"curr: {curr.val}, prev: {prev.val if prev else None}, next: {curr.next.val if curr.next else None}")
+        temp.append(curr.val)
         curr = curr.next
+        count += 1
+    for case in temp:
+        ans = list_to_linkedlist(case)
+
 def list_to_linkedlist(lst):
     if not lst:
         return None
