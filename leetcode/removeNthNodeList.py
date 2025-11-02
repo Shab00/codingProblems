@@ -4,16 +4,26 @@ class ListNode:
         self.next = next
 
 def removeNthFromEnd(head: ListNode, n: int) -> ListNode:
-    prev = None
-    curr = head 
-    count = 0
-    temp = []
-    while curr:
-        temp.append(curr.val)
-        curr = curr.next
-        count += 1
-    for case in temp:
-        ans = list_to_linkedlist(case)
+    dummy = ListNode(0, head)
+    fast = dummy
+    slow = dummy
+
+    for _ in range(n + 1):
+        if fast:
+            fast = fast.next
+        else:
+            return head
+
+    while fast:
+        fast = fast.next
+        slow = slow.next
+
+    to_delete = slow.next
+    if to_delete:
+        slow.next = to_delete.next
+        to_delete.next = None
+
+    return dummy.next
 
 def list_to_linkedlist(lst):
     if not lst:
