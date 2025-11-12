@@ -1,6 +1,6 @@
 class TreeNode:
-    def __init__(self, value = 0, left = None, right = None):
-        self.value = value
+    def __init__(self, val = 0, left = None, right = None):
+        self.val = val
         self.left = left
         self.right = right
 
@@ -13,7 +13,19 @@ root.right.right = TreeNode(9)
 root.right.left = TreeNode(6)
 
 def invertTree(root: TreeNode) -> TreeNode:
-    pass
+    if not root:
+        return []
+
+    stack = []
+    node = root
+    stack.append(node)
+    while stack:
+        cur = stack.pop()
+        print(cur.val)
+        if cur.right:
+            stack.append(cur.right)
+        if cur.left:
+            stack.append(cur.left)
 
 result = invertTree(root)
 print(result)
