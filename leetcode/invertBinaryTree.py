@@ -1,3 +1,5 @@
+from collections import deque
+
 class TreeNode:
     def __init__(self, val = 0, left = None, right = None):
         self.val = val
@@ -12,20 +14,48 @@ root.right = TreeNode(7)
 root.right.right = TreeNode(9)
 root.right.left = TreeNode(6)
 
-def invertTree(root: TreeNode) -> TreeNode:
+def invertTreeDFS(root: TreeNode) -> TreeNode:
     if not root:
-        return []
+        return None
 
-    stack = []
-    node = root
-    stack.append(node)
+    stack = [root]
     while stack:
         cur = stack.pop()
-        print(cur.val)
+        cur.left, cur.right = cur.right, cur.left
         if cur.right:
             stack.append(cur.right)
         if cur.left:
             stack.append(cur.left)
+    return root 
 
-result = invertTree(root)
-print(result)
+def invertTreeBFS(root: TreeNode) -> TreeNode:
+    if not root:
+        return None
+
+    q = deque([root])
+    while q:
+        cur = q.popleft()
+        cur.left, cur.right = cur.right, cur.left
+        if cur.right:
+            q.append(cur.right)
+        if cur.left:
+            q.append(cur.left)
+    return root
+
+def print_level(root):
+    if not root:
+        print([])
+        return
+    q = deque([root])
+    out = []
+    while q:
+        n = q.popleft()
+        out.append(n.val)
+        if n.left: q.append(n.left)
+        if n.right: q.append(n.right)
+    print(out)
+
+resultDFS = invertTreeDFS(root)
+resultBFS = invertTreeBFS(root)
+print_level(resultDFS)
+print_level(resultBFS)
