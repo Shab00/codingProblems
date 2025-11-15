@@ -22,24 +22,8 @@ root.right.left = TreeNode(6)
 #     1   3 6   9
 #
 
-def diameterDFS(root: TreeNode) -> int:
-    res = 0
+def isBalanced(root: TreeNode) -> bool:
+    pass
 
-    def dfs(root):
-        nonlocal res
-
-        if not root:
-            return 0
-        left = dfs(root.left)
-        right = dfs(root.right)
-        res = max(res, left + right)
-
-        return 1 + max(left, right)
-
-    dfs(root)
-    return res
-
-resultDFS = diameterDFS(root)
-print(
-        f"resultDFS: {resultDFS}"
-        )
+resultDFS = isBalanced(root)
+print(f"resultDFS: {resultDFS}")
