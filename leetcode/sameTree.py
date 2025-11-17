@@ -49,8 +49,36 @@ tests = [
 ]
 
 def isSameTree(p: TreeNode, q: TreeNode) -> bool:
-     pass
- 
+    if p == None and q == None:
+        return True
+    elif p == None and q:
+        return False
+    elif p and q == None:
+        return False
+
+    stackp = [p]
+    stackq = [q]
+
+    while stackp and stackq:
+        cur1 = stackp.pop()
+        cur2 = stackq.pop()
+        
+        if cur1.val != cur2.val:
+            return False
+
+        if (cur1.right is None) != (cur2.right is None):
+            return False
+        if cur1.right is not None:
+            stackp.append(cur1.right)
+            stackq.append(cur2.right)
+
+        if (cur1.left is None) != (cur2.left is None):
+            return False
+        if cur1.left is not None:
+            stackp.append(cur1.left)
+            stackq.append(cur2.left)
+
+    return not stackp and not stackq
 
 GREEN = "\033[92m"
 RED = "\033[91m"
