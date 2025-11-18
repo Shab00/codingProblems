@@ -59,8 +59,24 @@ examples = [
     (root2, subroot2, False),
 ]
 
+def isSameTree(a: TreeNode, b: TreeNode) -> bool:
+    if a is None and b is None:
+        return True
+    if a is None or b is None:
+        return False
+    if a.val != b.val:
+        return False
+    return isSameTree(a.left, b.left) and isSameTree(a.right, b.right)
+
 def isSubtree(root: TreeNode, subroot: TreeNode) -> bool:
-    pass
+    if subroot is None:
+        return True
+    if root is None:
+        return False
+
+    if isSameTree(root, subroot):
+        return True
+    return isSubtree(root.left, subroot) or isSubtree(root.right, subroot)
 
 GREEN = "\033[92m"
 RED = "\033[91m"
