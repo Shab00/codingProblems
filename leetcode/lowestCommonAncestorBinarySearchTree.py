@@ -84,7 +84,21 @@ tests = [
 ]
 
 def lowestCommon(root: TreeNode, p: TreeNode,  q: TreeNode) -> TreeNode:
-    pass
+
+    stack = [root]
+
+    while stack:
+        cur = stack.pop()
+
+        if p.val < cur.val and q.val < cur.val:
+            if cur.left:
+                stack.append(cur.left)
+        elif p.val > cur.val and q.val > cur.val:
+            if cur.right:
+                stack.append(cur.right)
+        else:
+            return cur.val
+
 
 GREEN = "\033[92m"
 RED = "\033[91m"
