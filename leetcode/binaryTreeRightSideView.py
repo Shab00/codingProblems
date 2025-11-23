@@ -37,4 +37,32 @@ root2.right = TreeNode(3)
 root2.right.left = TreeNode(6)
 root2.right.right = TreeNode(7)
 
-inputs = [([1,2,3,4,5,6,7], [1,3,7])]
+inputs = [
+        (root1, [1,2,3], [1,3]),
+        (root2, [1,2,3,4,5,6,7], [1,3,7])
+          ]
+
+def rightSide(root: TreeNode) -> list[int]:
+    if root is None:
+        return []
+
+    stack = [root]
+    result = []
+    while stack:
+        cur = stack.pop()
+        result.append(cur.val)
+        if cur.right:
+            stack.append(cur.right)
+    return result
+
+
+GREEN = "\033[92m"
+RED = "\033[91m"
+RESET = "\033[0m"
+
+for idx, (root, inputs, expec) in enumerate(inputs, start=1):
+    result = rightSide(root)
+    if result == expec:
+        print(f"Example {idx}: {GREEN}PASS{RESET} output=>{result}, expected=>{expec}")
+    else:
+        print(f"Example {idx}: {RED}FAIL{RESET} output=>{result}, expected=>{expec}")
