@@ -45,10 +45,10 @@ def levelOrder(root: TreeNode) -> list:
         for _ in range(levelLength):
             cur = q.popleft()
             level.append(cur.val)
-        if cur.left:
-            q.append(cur.left)
-        if cur.right:
-            q.append(cur.right)
+            if cur.left:
+                q.append(cur.left)
+            if cur.right:
+                q.append(cur.right)
         result.append(level)
     return result
         
