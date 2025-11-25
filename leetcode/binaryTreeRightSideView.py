@@ -1,3 +1,5 @@
+from collections import deque
+
 class TreeNode:
     def __init__(self, val = 0, right = None, left= None):
         self.val = val
@@ -46,13 +48,21 @@ def rightSide(root: TreeNode) -> list[int]:
     if root is None:
         return []
 
-    stack = [root]
+    q = deque([root])
     result = []
-    while stack:
-        cur = stack.pop()
-        result.append(cur.val)
-        if cur.right:
-            stack.append(cur.right)
+    while q:
+
+        levelLenght = len(q)
+        level = []
+        for _ in range(levelLenght):
+            cur = q.popleft()
+            level.append(cur.val)
+            if cur.left:
+                q.append(cur.left)
+            if cur.right:
+                q.append(cur.right)
+        result.append(level[-1])
+
     return result
 
 
