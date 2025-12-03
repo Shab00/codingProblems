@@ -75,8 +75,22 @@ inputs = [(root1, [3,1,4,3,None,1,5], 4),
           (root3, [1], 1)]
 
 def countGoodNodes(root: TreeNode) -> int:
-    pass
 
+    if root is None:
+        return 0
+
+    stack = [(root, root.val)]
+    count = 0
+    while stack:
+        node, curMax = stack.pop()
+        if node.val >= curMax:
+            count += 1
+        new_max = max(curMax, node.val)
+        if node.right:
+            stack.append((node.right, new_max))
+        if node.left:
+            stack.append((node.left, new_max))
+    return count
 
 GREEN = "\033[92m"
 RED = "\033[91m"
