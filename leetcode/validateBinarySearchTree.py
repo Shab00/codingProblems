@@ -43,7 +43,20 @@ inputs = [
     ]
 
 def validate(root: TreeNode) -> bool:
-    pass
+    if root is None:
+        return True
+
+    stack = [(root, float('-inf'), float('inf'))]
+    while stack:
+        cur, low, high = stack.pop()
+        if not (low < cur.val < high):
+            return False
+        if cur.right:
+            stack.append((cur.right, cur.val, high))
+        if cur.left:
+            stack.append((cur.left, low, cur.val))
+
+    return True
 
 GREEN = "\033[92m"
 RED = "\033[91m"
