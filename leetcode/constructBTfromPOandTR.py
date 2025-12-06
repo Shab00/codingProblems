@@ -47,7 +47,23 @@ example_cases = [
 ]
 
 def buildTree(pre: list, ino: list) -> TreeNode:
-    pass
+
+    preIdx = inIdx = 0
+    def dfs(limit):
+        nonlocal preIdx, inIdx
+        if preIdx >= len(pre):
+            return None
+        if ino[inIdx] == limit:
+            inIdx += 1
+            return None
+
+        root = TreeNode(pre[preIdx])
+        preIdx += 1
+        root.left = dfs(root.val)
+        root.right = dfs(limit)
+        return root
+    return dfs(float('inf'))
+    
 
 def is_same_tree(a: TreeNode, b: TreeNode) -> bool:
     if a is None and b is None:
