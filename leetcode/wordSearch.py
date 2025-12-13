@@ -8,7 +8,22 @@ inputs = [
         ]
 
 def search(grid: list[list[str]], word: str) -> bool:
-    pass
+    key = {}
+    count = 0
+    for char in word:
+        if char not in key:
+            key[char] = 0
+        key[char] += 1
+        count += 1
+    print(count)
+    for row in range(len(grid)):
+        for col in range(len(grid[row])):
+            if count == 0:
+                return True
+            elif grid[row][col] in key:
+                count -= 1
+    print(count)
+    return False
 
 
 GREEN = "\033[92m"
