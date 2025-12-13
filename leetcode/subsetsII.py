@@ -4,25 +4,20 @@ inputs = [
         ]
 
 def subsets(nums):
-    nums.sort()                     # sort first
+
+    nums.sort()
     res = []
     cur = []
 
     def dfs(start):
-        # record the current subset (append a copy)
-        # TODO: append cur copy to res
+        res.append(cur[:])
 
-        # iterate choices from start to end
-        j = start
-        while j < len(nums):
-            # TODO: choose nums[j] (append to cur)
-            # TODO: recurse with dfs(j + 1)
-            # TODO: undo your choice (pop from cur)
-
-            # skip duplicates at this recursion level:
-            # move j forward while next equals current
-            # (or use for-loop and `if j > start and nums[j] == nums[j-1]: continue`)
-            j += 1
+        for j in range(start, len(nums)):
+            if j > start and nums[j] == nums[j-1]:
+                continue
+            cur.append(nums[j])
+            dfs(j + 1)
+            cur.pop()
 
     dfs(0)
     return res
