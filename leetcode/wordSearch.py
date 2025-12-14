@@ -8,23 +8,32 @@ inputs = [
         ]
 
 def search(grid: list[list[str]], word: str) -> bool:
-    key = {}
-    count = 0
-    for char in word:
-        if char not in key:
-            key[char] = 0
-        key[char] += 1
-        count += 1
-    print(count)
-    for row in range(len(grid)):
-        for col in range(len(grid[row])):
-            if count == 0:
-                return True
-            elif grid[row][col] in key:
-                count -= 1
-    print(count)
-    return False
+    if not grid or not grid[0]:
+        return False
+    m, n = len(grid), len(grid[0])
 
+    def dfs(r, c, i):
+        if i == len(word):
+            return True
+        if r < 0 or r >= m or c < 0 or c >= n or grid[r][c] != word[i]:
+            return False
+
+        tmp = grid[r][c]
+        grid[r][c] = None
+
+        for dr, dc in ((1,0),(-1,0),(0,1),(0,-1)):
+            if dfs(r + dr, c + dc, i + 1):
+                grid[r][c] = tmp 
+                return True
+
+        grid[r][c] = tmp
+        return False
+
+    for r in range(m):
+        for c in range(n):
+            if dfs(r, c, 0):
+                return True
+    return False
 
 GREEN = "\033[92m"
 RED = "\033[91m"
