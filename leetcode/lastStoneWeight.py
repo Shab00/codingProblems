@@ -8,8 +8,8 @@ inputs = [
 def stoneW(stones: list[int]) -> int:
     max_heap = [-x for x in stones]
     heapq.heapify(max_heap)
-    print(max_heap)
-    print("as positives (heap order):", [-x for x in max_heap])
+    result = []
+    result.append(-max_heap[0])
 
 GREEN = "\033[92m"
 RED = "\033[91m"
