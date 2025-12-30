@@ -6,10 +6,16 @@ inputs = [
         ]
 
 def stoneW(stones: list[int]) -> int:
+
+    result = 0
     max_heap = [-x for x in stones]
     heapq.heapify(max_heap)
-    result = []
-    result.append(-max_heap[0])
+    while max_heap:
+        
+        cur = -heapq.heappop(max_heap)
+        result -= cur
+
+    return result
 
 GREEN = "\033[92m"
 RED = "\033[91m"
