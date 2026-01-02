@@ -7,7 +7,6 @@ inputs = [
         ]
 
 def stoneW(stones: list[int]) -> int:
-    result = 0
     max_heap = [-x for x in stones]
     heapq.heapify(max_heap)
     while len(max_heap) > 1:
