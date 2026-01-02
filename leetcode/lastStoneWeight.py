@@ -2,20 +2,31 @@ import heapq
 
 inputs = [
         ([2,7,4,1,8,1], 1),
-        ([1], 1)
+        ([1], 1),
+        ([2,2], 0)
         ]
 
 def stoneW(stones: list[int]) -> int:
-
     result = 0
     max_heap = [-x for x in stones]
     heapq.heapify(max_heap)
-    while max_heap:
-        
-        cur = -heapq.heappop(max_heap)
-        result -= cur
+    while len(max_heap) > 1:
+        if len(max_heap) == 1:
+            return -max_heap[0]
 
-    return result
+       
+        first = -heapq.heappop(max_heap)
+        second = -heapq.heappop(max_heap)
+        if first == second:
+            continue
+
+        else:
+            cur = first - second
+            heapq.heappush(max_heap, -cur)
+    if not max_heap:
+        return 0
+    else:
+        return -max_heap[0]
 
 GREEN = "\033[92m"
 RED = "\033[91m"
