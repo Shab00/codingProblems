@@ -23,13 +23,18 @@ def islandTres(grid: list[list[int]]) -> list[list[int]]:
                 zeros.append((row, col, 0))
     visted = set()
     directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+    m, n = len(grid), len(grid[0])
+    
     while zeros:
         row, col, distance = zeros.popleft()
         for dr, dc in directions:
            nr, nc = row + dr, col + dc 
-           if grid[nr][nc] == 2147483647:
-               grid[nr][nc] = distance + 1
-
+           if 0 <= nr < m and 0 <= nc < n:
+               if grid[nr][nc] == 2147483647 and (nr, nc) not in visted:
+                   grid[nr][nc] = distance + 1
+                   visted.add((nr, nc))
+                   zeros.append((nr, nc, distance + 1))
+    return grid
 
 
 GREEN = "\033[92m"
