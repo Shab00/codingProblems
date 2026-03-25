@@ -7,6 +7,7 @@ def valid(n: int, edges: list[list[int]]) -> bool:
     
     if n - 1 != len(edges):
         return False
+    print(n)
 
     nodeMap = defaultdict(list)    
     for node, link in edges:
