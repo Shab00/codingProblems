@@ -2,8 +2,19 @@ inputs = [([1,2,3,1], 4),
           ([2,7,9,3,1], 12)]
 
 def rob(nums: list[int]) -> int:
-    pass
 
+    memo = {}
+    def rob(i):
+        if i >= len(nums):
+            return 0
+        if i in memo:
+            return memo[i]
+        robThis = nums[i] + rob(i + 2)
+        skip = rob(i + 1)
+        memo[i] = max(robThis, skip)
+        return memo[i]
+
+    return rob(0)
 
 GREEN = "\033[92m"
 RED = "\033[91m"
