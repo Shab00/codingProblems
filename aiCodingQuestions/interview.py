@@ -15,17 +15,15 @@ inputs = [
 ]
 
 def add(s: str) -> str:
-    count = defaultdict(int)
-    for item in s:
-        if ':' in item:
-            key, value = item.split(':')
-            key = key.strip()
-            value = int(value.strip())
-            count[key] += value
+    hmap = defaultdict(int)
+    for i in s:
+        key, value = i.split(":")
+        hmap[key] += int(value)
 
-    result = {k: v for k, v in count.items() if v != 0}
-    result_str = ', '.join(f"{k}: {v}" for k, v in result.items())
-    return result_str
+    for key in list(hmap):
+        if hmap[key] == 0:
+            del hmap[key]
+    print(hmap)
 
 GREEN = "\033[92m"
 RED = "\033[91m"
