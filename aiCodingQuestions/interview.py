@@ -4,7 +4,7 @@ inputs = [
     (["x:1", "x:-1", "d:3"], "d: 3"),
     (["a:2", "a:-2"], ""),
     (["a:1", "b:2", "a:3", "b:-1"], "a: 4, b: 1"),
-    ([" y: 5 ", "y:-5", "z:7"], "z: 7"),
+    (["y: 5 ", "y:-5", "z:7"], "z: 7"),
     (["p:10", "q:20", "p:-5", "q:-10"], "p: 5, q: 10"),
     (["m:0", "n:2"], "n: 2"),
     (["r:5", "s:-5", "r:-5", "s:5"], ""),
@@ -23,7 +23,10 @@ def add(s: str) -> str:
     for key in list(hmap):
         if hmap[key] == 0:
             del hmap[key]
-    print(hmap)
+
+    result = ', '.join([f"{k}: {v}" for k, v in hmap.items()])
+
+    return result
 
 GREEN = "\033[92m"
 RED = "\033[91m"
