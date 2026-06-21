@@ -1,15 +1,16 @@
-inputs = [([0, 0, 1, 1, 1, 2, 2], 3)]
+inputs = [([0, 0, 1, 1, 1, 2, 2], 3),
+          ([1, 2, 3], 3),
+          ([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 1)]
 
 def remove(arr: list[int]) -> int:
-    l, r = 0, 0
-    d = set(arr)
+    l, r = 0, 1
     while r < len(arr):
-        print(arr[r])
-
+        if arr[l] != arr[r]:
+            l += 1
+            arr[l] = arr[r]
         r += 1
-        l += 1
-    return len(d)
 
+    return l + 1 
 
 GREEN = "\033[92m"
 RED = "\033[91m"
