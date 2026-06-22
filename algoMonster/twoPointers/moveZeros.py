@@ -1,7 +1,7 @@
 inputs = [([1, 0, 2, 0, 0, 7], [1, 2, 7, 0, 0, 0]),]
 
 def move(arr: list[int]) -> None:
-    l, r = 0, 1
+    l, r = 0, 0
     while r < len(arr):
         temp = None 
         if arr[r] != 0:
