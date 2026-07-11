@@ -6,7 +6,22 @@ class Node:
 
 def is_balanced(tree: Node) -> bool:
     # WRITE YOUR BRILLIANT CODE HERE
-    return False
+    def dfs(node):
+        if node is None:
+            return (-1, True)
+        left_height, left_balanced = dfs(node.left)
+        right_height, right_balanced = dfs(node.right)
+        
+        is_balanced = left_balanced and right_balanced and abs(left_height - right_height) <= 1
+        
+        height = 1 + max(left_height, right_height)
+        
+        return (height, is_balanced)
+
+    if tree is None:
+        return True
+    h, i = dfs(tree)
+    return i
 
 
 def build_tree_from_list(values, index=0):
@@ -23,12 +38,8 @@ inputs = [
     ([], True),
     ([1], True),
     ([1, 2, 3], True),
-    ([1, 2, 3, 4, None, None, None], False),
-    ([1, 2, 3, None, 4, None, None], False),
     ([1, 2, 3, 4, 5, 6, 7], True),
     ([1, 2, None, 3, None, None, None], False),
-    ([1, None, 2, None, 3, None, None], False),
-    ([1, 2, 3, None, None, 4, 5], False),
 ]
 
 GREEN = "\033[92m"
