@@ -5,9 +5,13 @@ class Node:
         self.right = right
 
 def valid_bst(root: Node) -> bool:
-    # WRITE YOUR BRILLIANT CODE HERE
-    return False
-
+    def dfs(node, low, high):
+        if not node:
+            return True
+        if not (low < node.val < high):
+            return False
+        return dfs(node.left, low, node.val) and dfs(node.right, node.val, high)
+    return dfs(root, float('-inf'), float('inf'))
 
 def build_tree_from_list(values, index=0):
     if not values or index >= len(values) or values[index] is None:
