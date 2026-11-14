@@ -54,8 +54,28 @@ def sum_lists(l1: Node, l2: Node) -> Node:
 
 
 def sum_lists_forward(l1: Node, l2: Node) -> Node:
-    # follow-up: forward order
-    pass
+    s1, s2 = [], []
+    while l1 is not None:
+        s1.append(l1.data)
+        l1 = l1.next
+    while l2 is not None:
+        s2.append(l2.data)
+        l2 = l2.next
+
+    head = None
+    carry = 0
+    while s1 or s2 or carry:
+        d1 = s1.pop() if s1 else 0
+        d2 = s2.pop() if s2 else 0
+
+        total = d1 + d2 + carry
+        carry = total // 10
+
+        node = Node(total % 10)
+        node.next = head 
+        head = node
+
+    return head
 
 GREEN, RED, RESET = "\033[92m", "\033[91m", "\033[0m"
 
@@ -140,9 +160,9 @@ forward_tests = [
     ([9, 9, 9, 9], [9], [1, 0, 0, 0, 8]),
 ]
 
-#for i, (a, b, expected) in enumerate(forward_tests, 1):
-#    result = to_list(sum_lists_forward(build_list(a), build_list(b)))
-#    if result == expected:
-#        print(f"Forward {i}: {GREEN}PASS{RESET}")
-#    else:
-#        print(f"Forward {i}: {RED}FAIL{RESET}  {a} + {b}: expected {expected}, got {result}")
+for i, (a, b, expected) in enumerate(forward_tests, 1):
+    result = to_list(sum_lists_forward(build_list(a), build_list(b)))
+    if result == expected:
+        print(f"Forward {i}: {GREEN}PASS{RESET}")
+    else:
+        print(f"Forward {i}: {RED}FAIL{RESET}  {a} + {b}: expected {expected}, got {result}")
